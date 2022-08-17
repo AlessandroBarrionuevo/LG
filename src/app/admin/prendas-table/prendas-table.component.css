@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap');
+
+:root{
+    --lg-font: 'Kaisei Tokumin', serif;
+    --sm-font: 'Poppins', sans-serif;
+    --pink: #e5345b;
+}
+body{
+    font-family: var(--sm-font);
+}
+
+/* button */
+.bg-primary{
+    background-color: var(--pink)!important;
+}
+
+.btn:not(.nav-btns button){
+    background-color: #fff;
+    color: rgb(85, 85, 85);
+    padding: 10px 28px;
+    border-radius: 25px;
+    border: 1px solid rgb(85, 85, 85);
+}
+.btn:not(.nav-btns button):hover{
+    background-color: var(--pink);
+    color: #fff;
+    border-color: var(--pink);
+}
+
+/* text color */
+.text-primary{
+    color: var(--pink)!important;
+}
+
+/* navbar */
+.navbar{
+    -webkit-box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand img{
+    width: 30px;
+}
+.navbar-brand span{
+    letter-spacing: 2px;
+    font-family: var(--lg-font);
+}
+.nav-link:hover{
+    color: var(--pink)!important;
+}
+.nav-item{
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+}
+
+/* barraBTN  */
+.barraBTN{
+    padding: 2rem 0rem;
+}
+
+
+/* header */
+#header{
+    background: url() top/cover no-repeat;
+}
+.carousel-inner h1{
+    font-size: 60px;
+    font-family: var(--lg-font);
+}
+.carousel-item .btn{
+    border-color: #fff!important;
+}
+.carousel-item .btn:hover{
+    border-color: var(--pink)!important;
+}
+
+/* title */
+.title h2::before{
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 50px;
+    background-color: var(--pink);
+    left: -20px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+
+/* media queries */
+@media(min-width: 992px){
+    .nav-item{
+        border-bottom: none;
+    }
+}
+
+/* Contenedor gallery*/
+.contenedor{
+    display: flex;
+    justify-content: center;
+}
+
+/* gallery */
+
+.gallery{
+    display: grid;
+    gap: 7rem 4rem;
+    grid-auto-rows: 22rem;
+    grid-template-columns: repeat(3, minmax(15rem, 1fr));
+    margin: 0 5rem;
+    
+}
+
+.columna{
+    justify-content: center;
+    align-items: center;
+}
+
+.cont{
+    max-height: 12rem;
+
+}
+
+/* card */
+
+/* definimos la separacion dentro del card y ponemos el marco del card */
+.card{
+
+    display: grid;
+    grid-template-columns: 18rem;
+    grid-template-rows: 15rem 5rem 5rem;
+    grid-template-areas: "img" "text" "numbers";
+    position: relative;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+    font-family: roboto;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+
+/* Definimos las areas para los divs */
+.card-image{
+    grid-area: img;
+}
+
+.card-text{
+    grid-area: text;
+}
+
+.card-stats{
+    grid-area: numbers;
+}
+
+
+/* card img*/
+.card-image{
+    grid-area: img;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-size: cover;
+
+}
+
+/* tipografia para el area text */
+.card-text{
+    grid-area: text;
+    margin: 25px;
+}
+
+.card-text .date{
+    color: #e5345b;
+    font-size: 13px;
+}
+
+.card-text p {
+    color: grey;
+    font-weight: 400;
+}
+
+.card-text h2{
+    margin-top: 0px;
+    font-size: 28px;
+}
+
+/* IMG PRENDA */
+.imgPrenda{
+    max-width: 100%;
+    max-height: 100%;
+}

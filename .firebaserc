@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lg-proy": {
+      "hosting": {
+        "lgFront": [
+          "lg-proy"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lg-proy"
+  }
+}
