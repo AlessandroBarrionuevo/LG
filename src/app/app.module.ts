@@ -12,14 +12,23 @@ import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { getStorage } from 'firebase/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PrendasTableComponent } from './admin/prendas-table/prendas-table.component';
+import { PrendasTableComponent } from './prendas-table/prendas-table.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TableAdminComponent } from './admin/table-admin/table-admin.component';
+import { PutPrendaComponent } from './admin/put-prenda/put-prenda.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableDataSource } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UploadPrendaComponent,
-    PrendasTableComponent
+    PrendasTableComponent,
+    TableAdminComponent,
+    PutPrendaComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +37,11 @@ import { PrendasTableComponent } from './admin/prendas-table/prendas-table.compo
     ReactiveFormsModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    NgbModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

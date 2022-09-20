@@ -1,0 +1,133 @@
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+    <div class="container">
+      <div>
+        <img class="logo" src="../../assets/images/logo.jpeg" alt="" />
+      </div>
+
+      <div class="order-lg-2 nav-btns">
+        <button type="button" class="btn position-relative">
+          <i class="fa fa-shopping-cart"></i>
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+            >5</span
+          >
+        </button>
+        <button type="button" class="btn position-relative">
+          <i class="fa fa-heart"></i>
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+            >2</span
+          >
+        </button>
+        <button type="button" class="btn position-relative">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+
+      <button
+        class="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+        <ul class="navbar-nav mx-auto text-center">
+          <li class="nav-item px-2 py-2">
+            <a class="nav-link text-uppercase text-dark" href="#header">Home</a>
+          </li>
+          <li class="nav-item px-2 py-2">
+            <a class="nav-link text-uppercase text-dark" href="#collection"
+              >Sobre nosotros</a
+            >
+          </li>
+          <li class="nav-item px-2 py-2">
+            <a class="nav-link text-uppercase text-dark" href="#special"
+              >Catalogo</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="title text-center">
+      <h2 class="position-relative d-inline-block">New Collection</h2>
+    </div>
+  </div>
+
+  <div class="row g-0">
+    <div
+      class="d-flex flex-wrap justify-content-center mt-5 filter-button-group barraBTN"
+    >
+    <button
+        type="button"
+        class="btn m-2 text-dark active-filter-btn"
+        (click) = "filtroToNull()"
+      >
+        Sin filtro
+      </button>
+      <button
+        *ngFor="let cat of categorias"
+        type="button"
+        class="btn m-2 text-dark active-filter-btn"
+        (click) = "filterBy(cat)"
+      >
+        {{cat}}
+      </button>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <table class="gallery">
+      <thead *ngFor="let p of prendas" class="cont">
+        <th class="columna">
+          <div class="card">
+
+            <div class="card-image">
+              <ngb-carousel class="carrusel">
+                <ng-template ngbSlide *ngFor="let img of p.images">
+                  <div class="card-image">
+                    <img [src]="img.url" alt="RIMG" class="imagenProducto">
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+            </div>
+
+            <div class="card-text">
+              <span class="date">Datos</span>
+              <h3>Nombre: {{ p.name }}</h3>
+              <p>Review: {{ p.review }}</p>
+            </div>
+
+            <div class="card-stats">
+              <div class="stat">
+                <div class="value">Talle: {{ p.size }}</div>
+              </div>
+
+              <div class="stat border">
+                <div class="value">Precio: ${{ p.price }}</div>
+              </div>
+            </div>
+
+          </div>
+        </th>
+      </thead>
+    </table>
+  </div>
+
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+  <!-- bootstrap js -->
+  <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+  <!-- custom js -->
+  <script src="js/script.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Antonio&family=Lobster&display=swap');
+  </style>
+</body>

@@ -4,21 +4,18 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { Img } from 'src/app/models/Img';
-import { Prenda } from 'src/app/models/Prenda';
 import { PrendasServiceService } from 'src/app/services/prendas-service.service';
-//storage
 import { Storage, ref, uploadBytes, listAll } from '@angular/fire/storage';
 import { getDownloadURL, list } from 'firebase/storage';
-import { dir } from 'console';
+import { ActivatedRoute } from '@angular/router';
+import { Prenda } from 'src/app/models/Prenda';
 import { FormulariosService } from 'src/app/services/formularios.service';
-
 @Component({
-  selector: 'app-upload-prenda',
-  templateUrl: './upload-prenda.component.html',
-  styleUrls: ['./upload-prenda.component.css'],
+  selector: 'app-put-prenda',
+  templateUrl: './put-prenda.component.html',
+  styleUrls: ['./put-prenda.component.css'],
 })
-export class UploadPrendaComponent implements OnInit {
+export class PutPrendaComponent implements OnInit {
   prendaForm: UntypedFormGroup = new UntypedFormGroup({
     name: new UntypedFormControl('', Validators.required),
     review: new UntypedFormControl('', Validators.required),
@@ -28,42 +25,63 @@ export class UploadPrendaComponent implements OnInit {
     categorie: new UntypedFormControl('', Validators.required),
     subCategorie: new UntypedFormControl('', Validators.required),
   });
+  id: number;
   images: string[] = [];
-  prendas: any;
-  categorias: any[] = [];
+  prenda: any;
+  categorias: any [] = [];
   constructor(
     private prendasService: PrendasServiceService,
+    private route: ActivatedRoute,
     private storageFirebase: Storage,
     private formService: FormulariosService
-  ) {}
+  ) {
+    this.id = route.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
+    this.getPrenda(this.id);
     this.categorias = this.formService.categorias;
   }
 
-  insertPrenda(prendaFrom: UntypedFormGroup) {
-    let prenda = new Prenda(
-      prendaFrom.value.name,
-      prendaFrom.value.review,
-      prendaFrom.value.colour,
-      prendaFrom.value.size,
-      prendaFrom.value.price,
-      prendaFrom.value.categorie,
-      prendaFrom.value.subCategorie,
+  getPrenda(id: number) {
+    this.prendasService.getPrendaById(id).subscribe(
+      (r) => {
+        this.prenda = r;
+      },
+      (err) => {
+        console.dir(err);
+      }
+    );
+  }
+
+  putPrenda(prendaForm: UntypedFormGroup){
+    let prendaUpdated = new Prenda(
+      prendaForm.value.name,
+      prendaForm.value.review,
+      prendaForm.value.colour,
+      prendaForm.value.size,
+      prendaForm.value.price,
+      prendaForm.value.categorie,
+      prendaForm.value.subCategorie,
       this.images
     );
 
-    console.log(prenda);
-    console.log(prenda.categorie);
+    prendaUpdated.id = this.id;
 
-    this.prendasService.prendaPost(prenda).subscribe((r) => {
-      console.log(r);
-    });
+    this.prendasService.updatePrenda(prendaUpdated).subscribe(
+      (r) => {
+        console.log(r);
+      },
+      (err) => {
+        console.dir(err);
+      }
+    );
+
   }
 
-  uploadMultipleImages($event: any) {
+  uploadMultipleImages($event: any){
     const files = $event.target.files;
-    for (let f of files) {
+    for(let f of files){
       this.uploadImage(f);
     }
   }

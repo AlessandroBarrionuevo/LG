@@ -1,0 +1,133 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+  <div class="container">
+    <a
+      class="navbar-brand d-flex justify-content-between align-items-center order-lg-0"
+      href="index.html"
+    >
+      <img src="" alt="site icon" />
+    </a>
+
+    <div class="order-lg-2 nav-btns">
+      <button type="button" class="btn position-relative">
+        <i class="fa fa-shopping-cart"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+          >5</span
+        >
+      </button>
+      <button type="button" class="btn position-relative">
+        <i class="fa fa-heart"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+          >2</span
+        >
+      </button>
+      <button type="button" class="btn position-relative">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <button
+      class="navbar-toggler border-0"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+      <ul class="navbar-nav mx-auto text-center">
+        <li class="nav-item px-2 py-2">
+          <a class="nav-link text-uppercase text-dark" href="#header">Home</a>
+        </li>
+        <li class="nav-item px-2 py-2">
+          <a class="nav-link text-uppercase text-dark" href="#collection"
+            >Sobre nosotros</a
+          >
+        </li>
+        <li class="nav-item px-2 py-2">
+          <a class="nav-link text-uppercase text-dark" href="#special"
+            >Catalogo</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<body class="body-table">
+  
+  <div class="inv">
+    <p>BOOOTON</p>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="postPrenda()"
+    >
+      <i class="bi bi-person-x"></i>
+    </button>
+  </div>
+
+ <div class="form-group">
+    <label class="label">Categoria</label>
+    <div class="form-group">
+      <select #t (change)="filterBy(t.value)">
+        <option value="null">SIN FILTRO</option>
+        <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+      </select>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="getAllPrendas()"
+    >
+      Limpiar Filtro
+    </button>
+  </div>
+
+
+  <table class="table table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Review</th>
+        <th scope="col">Talle</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">SubCategoria</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let prenda of prendas">
+      <tr>
+        <th scope="row">{{ prenda.id }}</th>
+        <td>{{ prenda.name }}</td>
+        <td>{{ prenda.price }}</td>
+        <td>{{ prenda.review }}</td>
+        <td>{{ prenda.size }}</td>
+        <td>{{ prenda.categorie }}</td>
+        <td>{{ prenda.subCategorie }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deletePrenda(prenda.id)"
+          >
+            <i class="bi bi-person-x"></i>
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="updatePrenda(prenda.id)"
+          >
+            <i class="bi bi-upload"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+

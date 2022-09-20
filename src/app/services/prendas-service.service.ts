@@ -27,4 +27,17 @@ export class PrendasServiceService {
   prendaPost(prenda: any): Observable<any> {
     return this.httpClient.post(this.url, prenda);
   }
+
+  updatePrenda(prenda:any): Observable<any>{
+    return this.httpClient.put(`${this.url}`, prenda);
+  }
+
+  deletePrenda(id: any): Observable<any>{
+    return this.httpClient.delete(`${this.url}/${id}`);
+  }
+
+  getPrendasByCategorie(categorie: any){
+    return this.httpClient.get(`${this.url}/categoria/${categorie}`);
+  }
+
 }

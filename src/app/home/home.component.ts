@@ -6,6 +6,7 @@ import { PrendasServiceService } from '../services/prendas-service.service';
 import { Storage, ref, uploadBytes, listAll } from '@angular/fire/storage';
 import { getDownloadURL, list } from 'firebase/storage';
 import { dir } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,9 @@ export class HomeComponent implements OnInit {
   prendas: any[] = [];
   res: any;
   images: string[] = [];
-
   constructor(
     private prendaService: PrendasServiceService,
+    private router: Router,
     private storageFirebase: Storage
   ) {}
 
@@ -67,4 +68,10 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  goToCatalogo(){
+    this.router.navigate(['prendas']);
+  }
+
+  
 }

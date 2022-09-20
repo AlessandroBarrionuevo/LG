@@ -62,15 +62,13 @@
       </div>
 
       <div class="form-group">
-        <input
-          type="text"
-          minlength="3"
-          maxlength="20"
-          class="form-control"
-          placeholder="categorie"
-          formControlName="categorie"
-        />
-        
+        <label class="label">Categoria</label>
+        <div class="form-group">
+          <select formControlName="categorie">
+            <option value="">Seleccione una categoria</option>
+            <option *ngFor="let cat of categorias">{{ cat }}</option>
+          </select>
+        </div>
       </div>
 
       <div class="form-group">
